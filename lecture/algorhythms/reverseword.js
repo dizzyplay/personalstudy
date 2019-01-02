@@ -12,3 +12,9 @@ function reverseWords(string) {
 }
 
 console.log(reverseWords('this is good'));
+
+// => siht si doog
+
+console.log(reverseWords('im a boy im himan nice to meet you'));
+// => mi a yob mi namih ecin ot teem uoy
+
