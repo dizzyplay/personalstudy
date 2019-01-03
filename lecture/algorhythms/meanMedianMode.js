@@ -51,8 +51,10 @@ function getMode(array) {
   return modes;
 }
 
-let arr = [1, 1, 1, 1, 2, 2, 2, 2, 2];
+let arr = [1, 2, 3, 4, 5, 4, 6, 1];
+let arr2 = [9, 10, 23, 10, 23, 9];
 
-console.log(getMode(arr));
-
-//[ '2' ]
+console.log(meanMedianMode(arr));
+// { mean: 3.25, median: 3.5, mode: [ '1', '4' ] }
+console.log(meanMedianMode(arr2));
+// { mean: 14, median: 10, mode: [] }
