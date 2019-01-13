@@ -30,8 +30,10 @@ static void do_cat(const char *path){
 
   fd=open(path,O_RDONLY);
   if(fd<0){
-    n=read(STDIN_FILENO,buf,sizeof buf);
-    write(STDOUT_FILENO, buf, n);
+    while(1){
+      n=read(STDIN_FILENO,buf,sizeof buf);
+      write(STDOUT_FILENO, buf, n);
+    }
   }
   else{
     while(n){
