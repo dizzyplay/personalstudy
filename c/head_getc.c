@@ -1,10 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define DEFAULT_N_LINES 10
+
 void do_head(FILE *f, int lines);
 
+
 int main(int argc, char *argv[]){
-  do_head(stdin,atoi(argv[1]));
+  int opt;
+  FILE *f;
+  long lines=DEFAULT_N_LINES;
+  f=fopen(argv[1],"r");
+  do_head(f,lines);
+  exit(0);
 }
 
 void do_head(FILE *f, int lines){
