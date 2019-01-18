@@ -26,6 +26,7 @@ int main(int argc, char *argv[]){
   int opt;
 
   if((f=fopen(argv[1],"r"))==NULL){
+    printf("standard input mode\n");
     f=stdin;
   }
 
@@ -33,6 +34,7 @@ int main(int argc, char *argv[]){
     switch (opt) {
       case 'n':
         que_limit=atoi(optarg);
+        puts(optarg);
         initQue();
         while(fgets(buf,sizeof buf,f)){
           tchar = (char*)malloc(sizeof buf);
