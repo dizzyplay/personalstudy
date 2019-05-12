@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "jest": "^24.8.0",
+    "nodeunit": "^0.11.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "jestinit": "jest --init"
+  }
+}
