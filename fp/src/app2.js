@@ -1,3 +1,22 @@
+const input = document.getElementById('i');
+const main = document.getElementById('main');
+
+let strCode = 0;
+input.addEventListener('keyup', e => {
+  //console.log(e.keyCode);
+  strCode += Number(e.keyCode);
+  console.log(strCode);
+  main.innerText = changeTokorean(strCode);
+});
+
+function changeTokorean(code) {
+  if (code === 82) return 'ㄱ';
+  if (code === 75) return 'ㅏ';
+  if (code === 157) return '가';
+  if (code === 68) return 'ㅇ';
+  if (code === 225) return '강';
+}
+
 const User = function(id, name, age) {
   this.getId = () => id;
   this.getName = () => name;
