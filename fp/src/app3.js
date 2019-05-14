@@ -2,13 +2,13 @@
 // 해쉬테이블이 5초이상 걸리도록
 // 데이터 넣어주기
 
-const t1 = new Date();
 function makeWords(length) {
-  return Array.from({length}, (a, idx) => 'a' + String(idx / 3));
+  const arr = Array.from({length}, (a, idx) => String(idx));
+  return arr;
 }
 function wordCount() {
-  const m = 10000;
-  const words = makeWords(6900);
+  const m = 10;
+  const words = makeWords(100000);
   let count = 0;
   const t1 = new Date();
   const slot = [];
@@ -24,6 +24,7 @@ function wordCount() {
   }
   const t2 = new Date();
   console.log((t2 - t1) / 1000);
+  console.log(count);
 
   let s = 0;
   for (const a of slot) {
