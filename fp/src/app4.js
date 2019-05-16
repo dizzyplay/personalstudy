@@ -46,7 +46,7 @@ function match(obj1, obj2) {
 }
 
 function positive(list) {
-  return filter(list, identity);
+  return find(list, identity);
 }
 
 function negativeIndex(list) {
@@ -63,13 +63,36 @@ function beq(b) {
   };
 }
 
-// 하나라도 참값이면 트루
-// 아니면 false
-_.some = function(list) {
-  return not(not(positive(list).length));
+_.compose = function() {
+  //arguments배열은 함수를 갖고잇따.
+  const args = arguments;
+  const start = args.length - 1; //맨 뒤부터 시작
+  return function() {
+    let i = start;
+    let result = args[i].apply(this, arguments); //apply쓰는 이유는 arguments가 유사 배열이므로
+    while (i--) {
+      result = args[i].call(this, result);
+    }
+    return result;
+  };
 };
 
+// 하나라도 참값이면 트루
+// 아니면 false
+
+_.some = _.compose(
+  not,
+  not,
+  positive,
+);
+
 //모든 값이 트루여야 트루 하나라도 false면 false
-_.every = function(list) {
-  return beq(-1)(negativeIndex(list));
-};
+
+_.every = _.compose(
+  beq(-1),
+  negativeIndex,
+);
+
+const greet = name => 'hi ' + name;
+
+const exclaim = statement => statement.toUpperCase();
