@@ -5,13 +5,13 @@ const User = function(id, name, age) {
 };
 
 const users = [
-  {id: 1, name: 'aa', age: 20},
-  {id: 2, name: 'bb', age: 30},
-  {id: 3, name: 'cc', age: 25},
-  {id: 4, name: 'dd', age: 38},
-  {id: 5, name: 'ee', age: 28},
-  {id: 6, name: 'ff', age: 33},
-  {id: 7, name: 'gg', age: 21},
+  {id: 1, name: 'vovo', age: 20},
+  {id: 2, name: 'james', age: 30},
+  {id: 3, name: 'kkamange', age: 25},
+  {id: 4, name: 'dasom', age: 38},
+  {id: 5, name: 'sera', age: 28},
+  {id: 6, name: 'himan', age: 33},
+  {id: 7, name: 'goodman', age: 21},
 ];
 
 const users2 = [
