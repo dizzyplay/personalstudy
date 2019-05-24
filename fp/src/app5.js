@@ -96,20 +96,18 @@ function callWith(v) {
 }
 
 Function.prototype.partial = function() {
-  const args = Array.prototype.slice.call(arguments);
+  const _args = arguments;
   const fn = this;
   return function() {
-    let arg = 0;
-    for (let i = 0; i < args.length && arg < arguments.length; i++) {
-      console.log(args);
-      if (args[i] === undefined) args[i] = arguments[arg++];
+    const args = Array.prototype.slice.call(_args);
+    let s = 0;
+    for (let i = 0; i < args.length && s < arguments.length; i++) {
+      if (args[i] === undefined) args[i] = arguments[s++];
     }
-    return fn.apply(this, args);
+    return fn.apply(null, args);
   };
 };
 
-const ac = abc.partial(1, undefined, undefined);
-ac(1, 2);
 function abc(a, b, c) {
   console.log(a, b, c);
 }
@@ -121,3 +119,23 @@ function add() {
   }
   return result;
 }
+
+function equal(a, b) {
+  return a === b;
+}
+
+const bj = {
+  name: 'bj',
+  greeting: _.partial(
+    function(a, b) {
+      return `${a} ${this.name} ${b}`;
+    },
+    'hi iam',
+    'nice to meet you',
+  ),
+};
+
+obj9.a = 1;
+obj9.b = 2;
+console.log(obj9.a + obj9.b);
+function obj9() {}
