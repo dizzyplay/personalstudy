@@ -18,7 +18,7 @@ node* push(node *parent ,char *v){
 int main(){
   node *first = malloc(sizeof(node));
   node *second = malloc(sizeof(node));
-  first->data="test";
+  first->data="first message";
   second = push(first,"second");
   printf("%s",second->data);
   return 0;
