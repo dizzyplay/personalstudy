@@ -135,9 +135,61 @@ const bj = {
   ),
 };
 
-function numberCheckAdd(a, b) {
-  return valid() ? a + b : new Error('invalid value');
+function validAdd(a, b) {
+  return valid() ? a + b : new Error('Invalid value');
   function valid() {
     return Number.isInteger(a) && Number.isInteger(b);
   }
 }
+
+function L(str) {
+  const f = str.split('=>');
+  return new Function(f[0], 'return ' + f[1]);
+}
+
+function _map(list, iter) {
+  const new_list = [];
+  for (let i = 0; i < list.length; i++) {
+    new_list[i] = iter(list[i], i);
+  }
+  return new_list;
+}
+
+console.time('1');
+var list = Array(10000);
+_map(list, function(v, i) {
+  return (function(i) {
+    return i * 2;
+  })(i);
+});
+console.timeEnd('1');
+
+console.time('2');
+var list = Array(10000);
+_map(list, eval("L('v,i=>i*2')"));
+console.timeEnd('2');
+
+console.time('3');
+var list = Array(10000);
+_map(list, function(v, i) {
+  return (function(i) {
+    return i * 2;
+  })(i);
+});
+
+console.timeEnd('3');
+
+function L2(str) {
+  if (L2[str]) return L2[str];
+  const v = str.split('=>');
+  return (L2[str] = new Function(v[0], `return ${v[1]}`));
+}
+
+console.time('4');
+var list = Array(10000);
+
+_map(list, function(v, i) {
+  return L2('i=>i*2')(i);
+});
+
+console.timeEnd('4');
