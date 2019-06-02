@@ -112,14 +112,6 @@ function abc(a, b, c) {
   console.log(a, b, c);
 }
 
-function add() {
-  let result = 0;
-  for (let i = 0; i < arguments.length; i++) {
-    result += arguments[i];
-  }
-  return result;
-}
-
 function equal(a, b) {
   return a === b;
 }
@@ -135,9 +127,94 @@ const bj = {
   ),
 };
 
-function numberCheckAdd(a, b) {
-  return valid() ? a + b : new Error('invalid value');
+function validAdd(a, b) {
+  return valid() ? a + b : new Error('Invalid value');
   function valid() {
     return Number.isInteger(a) && Number.isInteger(b);
   }
 }
+
+function L(str) {
+  const f = str.split('=>');
+  return new Function(f[0], 'return ' + f[1]);
+}
+
+function _map(list, iter) {
+  const new_list = [];
+  for (let i = 0; i < list.length; i++) {
+    new_list[i] = iter(list[i], i);
+  }
+  return new_list;
+}
+
+function L2(str) {
+  if (L2[str]) return L2[str];
+  const v = str.split('=>');
+  return (L2[str] = new Function(v[0], `return ${v[1]}`));
+}
+
+function flat(arr) {
+  return (function f(arr, newArr) {
+    arr.forEach(v => (Array.isArray(v) ? f(v, newArr) : newArr.push(v)));
+    return newArr;
+  })(arr, []);
+}
+
+function flat2(arr, newArr) {
+  arr.forEach(v => (Array.isArray(v) ? flat2(v, newArr) : newArr.push(v)));
+  return newArr;
+}
+
+function flat3(arr, newArr) {
+  if (!newArr) return flat3(arr, []);
+  arr.forEach(v => (Array.isArray(v) ? flat3(v, newArr) : newArr.push(v)));
+  return newArr;
+}
+
+function test(a, b, c) {
+  console.log(a, b, c);
+  console.log('this', this);
+  console.log('arguments', arguments);
+}
+
+const slice = Array.prototype.slice;
+function toArray(data) {
+  return slice.call(data);
+}
+
+function rest(data, n) {
+  return slice.call(data, n || 1);
+}
+
+const u1 = {name: 'pj', friends: []};
+const u2 = {name: 'ha', friends: []};
+
+function addFriend(u1, u2) {
+  (u1.friends.indexOf(u2) == -1 || alert('이미 친구 ')) &&
+    confirm('친구로 추가할까요?') &&
+    u1.friends.push(u2);
+}
+
+const sub = function(a, b, callback) {
+  setTimeout(function() {
+    callback(a - b);
+  }, 1000);
+};
+
+const div = function(a, b, callback) {
+  setTimeout(function() {
+    callback(a / b);
+  }, 1000);
+};
+
+function wrap(func) {
+  return function() {
+    return func.apply(null, arguments);
+  };
+}
+
+var add = wrap(function(a, b, callback) {
+  setTimeout(function() {
+    callback(a + b);
+  }, 1000);
+});
