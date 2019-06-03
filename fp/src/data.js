@@ -4,6 +4,9 @@ const User = function(id, name, age) {
   this.getAge = () => age;
 };
 
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const charArr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+
 const users = [
   {id: 1, name: 'vovo', age: 20},
   {id: 2, name: 'james', age: 30},
