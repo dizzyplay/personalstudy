@@ -1,27 +1,19 @@
 #include <iostream>
-#include <iomanip>
+#include <string>
+#include <stdio.h>
 
 using namespace std;
 
 int main(){
-  int n,count;
-
-  count =0;
-  cin >> n;
-  if(n%5==0) {
-    count += n/5;
-    n=0;
-  }
-  while(n>=3){
-    n-=3;
-    count++;
-    if(n%5==0){
-      count += n/5;
-      n=0;
-      break;
+  string s,str;
+  int n;
+  cin >> s;
+  n= s.length();
+  for(int i=1; i<n+1; i++){
+    cout << s[i-1];
+    if(i%10==0){
+      cout << "\n";
     }
   }
-  if(n==0) cout << count;
-  else cout << -1;
   return 0;
 }
