@@ -1,4 +1,5 @@
 from functools import *
+import time
 
 def gen_not_self_num(num):
     if num >=10:
@@ -23,4 +24,6 @@ def gen_self_num(target):
         if i not in arr:
             print(i)
 
+start = time.time()
 gen_self_num(10000)
+print("time:", time.time()-start)
