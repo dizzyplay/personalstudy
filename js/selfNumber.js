@@ -24,4 +24,6 @@ function checkSelfNum(target) {
   }
 }
 
-checkSelfNum(10000)
+console.time('selfnum');
+checkSelfNum(10000);
+console.timeEnd('selfnum');
