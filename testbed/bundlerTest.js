@@ -5,8 +5,8 @@ function* bundler(problems, maxSize){
   let result = []
   let temp;
   while(problems.length > 0){
+    if (problems[0] > maxSize) throw new Error('problem size too big')
     temp = problems.shift()
-    if (temp > maxSize) throw new Error('problem size too big')
     result.push(temp)
     if (result.reduce((v,acc) => acc += v, 0) > maxSize){
       result.pop()
